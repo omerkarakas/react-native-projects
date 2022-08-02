@@ -13,12 +13,18 @@ import TaskItem from './components/TaskItem';
 
 export default function App() {
   const [tasks, setTasks] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const startAddTask = () => {
+    setModalVisible(true);
+  };
 
   const addTaskHandler = (inputText) => {
     setTasks((currTasks) => [
       ...currTasks,
       { text: inputText, id: Math.random().toString() },
     ]);
+    setModalVisible(false);
   };
 
   const deleteTaskHandler = (id) => {
@@ -28,7 +34,8 @@ export default function App() {
 
   return (
     <View style={styles.AppContainer}>
-      <TaskInput addTaskHandler={addTaskHandler} />
+      <Button title="Add New Task" onPress={setModalVisible} />
+      {modalVisible && <TaskInput addTaskHandler={addTaskHandler} />}
 
       <View style={styles.TasksContainer}>
         <FlatList

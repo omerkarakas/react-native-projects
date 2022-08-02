@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button, StyleSheet, TextInput, View } from 'react-native';
+import { Modal } from 'react-native-web';
 
 const TaskInput = ({ addTaskHandler }) => {
   const [taskName, setTaskName] = useState('');
@@ -16,15 +17,17 @@ const TaskInput = ({ addTaskHandler }) => {
   };
 
   return (
-    <View style={styles.InputContainer}>
-      <TextInput
-        placeholder="Task Name"
-        style={styles.TextInput}
-        onChangeText={taskInputHandler}
-        value={taskName}
-      />
-      <Button title="Add Task" onPress={addTaskButton} />
-    </View>
+    <Modal>
+      <View style={styles.InputContainer}>
+        <TextInput
+          placeholder="Task Name"
+          style={styles.TextInput}
+          onChangeText={taskInputHandler}
+          value={taskName}
+        />
+        <Button title="Add Task" onPress={addTaskButton} />
+      </View>
+    </Modal>
   );
 };
 

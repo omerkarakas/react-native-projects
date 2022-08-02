@@ -2,11 +2,14 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 const TaskItem = ({ id, text, onDeleteItem }) => {
   return (
-    <Pressable onPress={() => onDeleteItem(id)}>
-      <View style={styles.Task}>
+    <View style={styles.Task}>
+      <Pressable
+        onPress={() => onDeleteItem(id)}
+        style={({ pressed }) => pressed && styles.pressedTask}
+      >
         <Text style={styles.TaskText}>{text}</Text>
-      </View>
-    </Pressable>
+      </Pressable>
+    </View>
   );
 };
 
@@ -21,5 +24,8 @@ const styles = StyleSheet.create({
   TaskText: {
     fontSize: 20,
     color: 'blue',
+  },
+  pressedTask: {
+    opacity: 0.7,
   },
 });
