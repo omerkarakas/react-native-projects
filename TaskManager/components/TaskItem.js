@@ -4,6 +4,7 @@ const TaskItem = ({ id, text, onDeleteItem }) => {
   return (
     <View style={styles.Task}>
       <Pressable
+        android_ripple={{ color: '#CCCCCC' }}
         onPress={() => onDeleteItem(id)}
         style={({ pressed }) => pressed && styles.pressedTask}
       >
@@ -19,11 +20,12 @@ const styles = StyleSheet.create({
   Task: {
     margin: 10,
     borderRadius: 5,
-    backgroundColor: '#DEF',
+    // backgroundColor: 'lightblue',
   },
   TaskText: {
     fontSize: 20,
     color: 'blue',
+    padding: 8,
   },
   pressedTask: {
     opacity: 0.7,

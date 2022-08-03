@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import TaskInput from './components/TaskInput';
 import TaskItem from './components/TaskItem';
+import { StatusBar } from 'expo-status-bar';
 
 export default function App() {
   const [tasks, setTasks] = useState([]);
@@ -33,27 +34,37 @@ export default function App() {
   };
 
   return (
-    <View style={styles.AppContainer}>
-      <Button title="Add New Task" onPress={setModalVisible} />
-      {modalVisible && <TaskInput addTaskHandler={addTaskHandler} />}
-
-      <View style={styles.TasksContainer}>
-        <FlatList
-          data={tasks}
-          renderItem={(itemData) => {
-            return (
-              <TaskItem
-                id={itemData.item.id}
-                text={itemData.item.text}
-                onDeleteItem={() => deleteTaskHandler(itemData.item.id)}
-              />
-            );
-          }}
-          keyExtractor={(item, index) => {
-            return item.key;
-          }}
+    <>
+      <StatusBar style="auto" />
+      <View style={styles.AppContainer}>
+        <Button
+          title="Add New Task"
+          onPress={setModalVisible}
+          color="steelblue"
         />
-        {/* <ScrollView>
+        <TaskInput
+          visible={modalVisible}
+          addTaskHandler={addTaskHandler}
+          setModalVisible={setModalVisible}
+        />
+
+        <View style={styles.TasksContainer}>
+          <FlatList
+            data={tasks}
+            renderItem={(itemData) => {
+              return (
+                <TaskItem
+                  id={itemData.item.id}
+                  text={itemData.item.text}
+                  onDeleteItem={() => deleteTaskHandler(itemData.item.id)}
+                />
+              );
+            }}
+            keyExtractor={(item, index) => {
+              return item.key;
+            }}
+          />
+          {/* <ScrollView>
           {tasks.map((task, index) => {
             return (
               <View key={index} style={styles.Task}>
@@ -62,8 +73,9 @@ export default function App() {
             );
           })}
         </ScrollView> */}
+        </View>
       </View>
-    </View>
+    </>
   );
 }
 
@@ -79,8 +91,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'start',
     alignItems: 'stretch',
-    margin: 50,
-    width: '80%',
+    // margin: 50,
+    width: '100%',
     flex: 4,
     backgroundColor: '#FBFBFF',
     borderRadius: 5,
