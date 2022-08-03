@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   Task: {
     margin: 10,
     borderRadius: 5,
-    // backgroundColor: 'lightblue',
+    backgroundColor: 'lightblue',
   },
   TaskText: {
     fontSize: 20,

@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
-    // backgroundColor: '#F2FbFb',
+    backgroundColor: '#F2FbFb',
   },
   TextInput: {
     borderWidth: 1,
